@@ -27,7 +27,7 @@ export default function WorkflowFilters({ current, onChange, onClearFinished }) 
         Finished
       </button>
 
-      <button aria-label="Clear Finished" className="clear-button" onClick={onClearFinished}>
+      <button aria-label="Clear Finished" className="clear-button cta" onClick={onClearFinished}>
         Clear Finished
       </button>
     </div>

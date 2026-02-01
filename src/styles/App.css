@@ -1,46 +1,73 @@
 :root{
-  --bg: #0f1724;
-  --card: #0b1220;
-  --accent: #2563eb;
-  --muted: #9ca3af;
-  --success: #10b981;
+  --bg-0: #071522; /* deep backdrop */
+  --bg-1: #0b2940; /* card base */
+  --accent: #1fb6a0; /* teal/sea accent */
+  --accent-2: #0ea5a3;
+  --muted: #93a3b8;
+  --text: #e6f2f1;
+  --success: #12b886;
   --danger: #ef4444;
   --glass: rgba(255,255,255,0.03);
 }
 
+*{ box-sizing: border-box }
+
 body{
-  background: linear-gradient(180deg, #071028 0%, #071520 100%);
-  color: #e6eef8;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  margin: 0; padding: 24px; box-sizing: border-box;
+  background: linear-gradient(180deg, var(--bg-0) 0%, #071720 100%);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin: 0; padding: 0; -webkit-font-smoothing:antialiased;
+  display: flex; align-items: center; justify-content: center; min-height: 100vh;
 }
 
-.workflow-app{ max-width: 760px; margin: 0 auto; }
-header h1{ margin:0; font-size: 28px; }
-.subtitle{ margin: 6px 0 18px; color: var(--muted); }
+.workflow-app{ width:100%; max-width: 600px; padding: 20px }
+.workflow-app .card-wrap{ width:100% }
 
-.controls{ display:flex; gap:12px; align-items:center; margin-bottom:12px; }
+header{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  padding: 20px; border-radius:16px; box-shadow: 0 10px 30px rgba(2,6,23,0.6); margin-bottom:18px;
+}
+header h1{ margin:0; font-size:28px; letter-spacing: -0.5px }
+.subtitle{ margin:8px 0 0; color:var(--muted); }
+
+.card-wrap{ background:var(--bg-1); padding:20px; border-radius:16px; box-shadow:0 12px 30px rgba(2,8,20,0.6); }
+
+.controls{ display:flex; gap:12px; align-items:center; margin-bottom:16px }
 .workflow-input{ display:flex; gap:8px; width:100%; }
-.workflow-input input{ flex:1; padding:10px 12px; border-radius:8px; border:1px solid var(--glass); background:transparent; color:inherit }
-.workflow-input button{ padding:10px 12px; background:var(--accent); border:none; color:white; border-radius:8px; cursor:pointer }
-.workflow-input button:active{ transform:translateY(1px) }
+.workflow-input input{
+  flex:1; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.02); color:var(--text); transition: box-shadow .18s ease, border-color .18s ease;
+}
+.workflow-input input:focus{ outline:none; box-shadow:0 4px 18px rgba(31,182,160,0.12); border-color:var(--accent-2) }
+.workflow-input button{
+  padding:10px 14px; background:var(--success); border:none; color:white; border-radius:12px; cursor:pointer; font-weight:600; transition: transform .12s ease, box-shadow .12s ease;
+}
+.workflow-input button:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(18,184,134,0.12) }
 
-.stats{ color:var(--muted); }
+.stats{ color:var(--muted); font-size:14px }
 
-.workflow-filters{ display:flex; gap:8px; margin-bottom:12px; align-items:center }
-.filter-button, .clear-button{ background:transparent; border:1px solid var(--glass); color:var(--muted); padding:8px 10px; border-radius:8px; cursor:pointer }
-.filter-button.active{ background: linear-gradient(90deg,var(--accent), #7c3aed); color:white; border-color:transparent; font-weight:700 }
-.clear-button{ margin-left:auto; border-color:rgba(255,255,255,0.06) }
+.workflow-filters{ display:flex; gap:10px; margin-bottom:14px; align-items:center }
+.filter-button, .clear-button{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:8px 12px; border-radius:10px; cursor:pointer; transition: background .12s ease, color .12s ease, box-shadow .12s ease }
+.filter-button:hover{ color:var(--text); background: rgba(255,255,255,0.02) }
+.filter-button.active{ background: var(--accent); color: #02201c; font-weight:700; box-shadow: 0 6px 18px rgba(16,182,160,0.12); border-color:transparent }
+.filter-button.active::after{ content:""; display:block; height:4px; border-radius:4px; background: linear-gradient(90deg,var(--accent),var(--accent-2)); margin-top:8px }
+.clear-button{ margin-left:auto; background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted) }
+.clear-button.cta{ background: var(--danger); color:white; border-color:transparent }
+.clear-button.cta:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(239,68,68,0.12) }
 
-.workflow-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px }
-.flow-item{ display:flex; align-items:center; gap:12px; padding:10px; border-radius:8px; background:var(--card); border:1px solid rgba(255,255,255,0.02) }
-.flow-item.finished .flow-text{ text-decoration:line-through; color:var(--muted) }
-.flow-text{ flex:1 }
+.workflow-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px }
+.flow-item{ display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); border:1px solid rgba(255,255,255,0.02); transition: transform .12s ease, box-shadow .12s ease, background .12s ease }
+.flow-item:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(2,10,20,0.5) }
+.flow-item.finished .flow-text{ text-decoration:line-through; color:#8b97a3; opacity:0.75 }
+.flow-text{ flex:1; transition: color .12s ease }
 .actions{ display:flex; gap:8px }
-.actions button{ background:transparent; border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:6px 8px; border-radius:6px; cursor:pointer }
+.actions button{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:6px 10px; border-radius:8px; cursor:pointer }
+.actions button:hover{ color:var(--text); background: rgba(255,255,255,0.02) }
 .empty{ color:var(--muted); padding:18px; text-align:center }
 
-@media (max-width:600px){
+@media (max-width:800px){
+  body{ padding:20px }
   .controls{ flex-direction:column; align-items:stretch }
   .clear-button{ margin-left:0 }
 }
+

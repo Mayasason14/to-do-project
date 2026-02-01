@@ -51,28 +51,30 @@ export default function WorkflowApp() {
 
   return (
     <main className="workflow-app">
-      <header>
-        <h1>Workflow Runner</h1>
-        <p className="subtitle">Manage your Flow — add, edit, complete and keep your work moving</p>
-      </header>
+      <div className="card-wrap">
+        <header>
+          <h1>Workflow Runner</h1>
+          <p className="subtitle">Manage your Flow — add, edit, complete and keep your work moving</p>
+        </header>
 
-      <section className="controls">
-        <WorkflowInput onAdd={handleAdd} />
-        <div className="stats">Active: <strong>{activeCount}</strong></div>
-      </section>
+        <section className="controls">
+          <WorkflowInput onAdd={handleAdd} />
+          <div className="stats">Active: <strong>{activeCount}</strong></div>
+        </section>
 
-      <WorkflowFilters
-        current={filter}
-        onChange={setFilter}
-        onClearFinished={handleClearFinished}
-      />
+        <WorkflowFilters
+          current={filter}
+          onChange={setFilter}
+          onClearFinished={handleClearFinished}
+        />
 
-      <WorkflowList
-        items={filtered}
-        onToggle={handleToggle}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-      />
+        <WorkflowList
+          items={filtered}
+          onToggle={handleToggle}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+        />
+      </div>
     </main>
   )
 }

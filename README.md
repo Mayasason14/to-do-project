@@ -4,13 +4,23 @@ Workflow Runner is a small React 19 application built with Vite that demonstrate
 
 Getting started
 
-Install dependencies:
+# Workflow Runner
+
+Workflow Runner is a modern, dashboard-style Flow management application built with React 19 and Vite. It demonstrates component composition, Hooks-based state management, prop-driven data flow, LocalStorage persistence, accessibility best practices and unit testing with Vitest.
+
+## Description
+
+A polished Workflow Runner app focusing on "Flow" terminology and workflow-oriented interactions. Users can add, edit, toggle completion, delete, filter, and batch-clear finished Flow items. State persists in the browser via LocalStorage.
+
+## How to run
+
+Install dependencies (use legacy peer deps for compatibility with React 19 if required):
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
-Run the dev server:
+Start the development server:
 
 ```bash
 npm run dev
@@ -22,31 +32,23 @@ Run tests:
 npm test
 ```
 
-Project structure
+## Components
 
-- `src/core/workflowEngine.js` — persistence utilities and ID generation.
-- `src/containers/WorkflowApp.jsx` — main application container and state logic.
-- `src/elements` — UI components: `WorkflowInput`, `WorkflowList`, `WorkflowItem`, `WorkflowFilters`.
-- `src/styles/App.css` — application styles and responsive layout.
-- `src/__tests__` — unit tests for key components (Vitest + React Testing Library).
+- **WorkflowApp** — Main container that manages state, persistence, and coordinates child components.
+- **WorkflowInput** — Controlled input for creating new Flow items with accessible labels.
+- **WorkflowList** — Displays a list of Flow items or an empty state when no items exist.
+- **WorkflowItem** — Single Flow item component with toggle, edit and delete actions; accessible and keyboard-friendly.
+- **WorkflowFilters** — Filter controls for `All`, `In-Progress`, and `Finished` views, and a Batch Clear action.
 
-Notes
+## Tests
 
-- The app uses `crypto.randomUUID()` when available to generate unique IDs for Flow items.
-- State is synchronized with LocalStorage under the key `workflow_runner.state`.
-# React + Vite
+Unit tests are implemented with Vitest and React Testing Library for core components (`WorkflowInput`, `WorkflowItem`). The test environment uses JSDOM and jest-dom matchers.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Known issues
 
-Currently, two official plugins are available:
+None — all tests pass and the app is functionally complete.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Notes
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- State is persisted to LocalStorage under the key `workflow_runner.state`.
+- IDs are generated using `crypto.randomUUID()` when available; a safe fallback is included.
