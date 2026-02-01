@@ -1,3 +1,39 @@
+# Workflow Runner
+
+Workflow Runner is a small React 19 application built with Vite that demonstrates component composition, Hooks-based state management, prop-driven data flow, LocalStorage persistence, and basic unit testing.
+
+Getting started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the dev server:
+
+```bash
+npm run dev
+```
+
+Run tests:
+
+```bash
+npm test
+```
+
+Project structure
+
+- `src/core/workflowEngine.js` — persistence utilities and ID generation.
+- `src/containers/WorkflowApp.jsx` — main application container and state logic.
+- `src/elements` — UI components: `WorkflowInput`, `WorkflowList`, `WorkflowItem`, `WorkflowFilters`.
+- `src/styles/App.css` — application styles and responsive layout.
+- `src/__tests__` — unit tests for key components (Vitest + React Testing Library).
+
+Notes
+
+- The app uses `crypto.randomUUID()` when available to generate unique IDs for Flow items.
+- State is synchronized with LocalStorage under the key `workflow_runner.state`.
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
